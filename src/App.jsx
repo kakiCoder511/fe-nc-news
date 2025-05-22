@@ -6,20 +6,17 @@ import ArticlePage from "./components/ArticlePage.jsx";
 import "./App.css";
 
 function App() {
-const user = {username:"kakiCoder511",
-avatar_url:"/avatar.jpg" 
-}
-
+  const user = { username: "kakiCoder511", avatar_url: "/avatar.jpg" };
 
   return (
     <div>
-      <Header user={user}/>
+      <Header user={user} />
       <TopicsBar />
 
-<Routes>
-  <Route path="/" element={<ArticlesList />} />
-  <Route path="articles/:article_id" element={<ArticlePage />} />
-</Routes>
+      <Routes>
+        <Route path="/" element={<ArticlesList />} />
+        <Route path="articles/:article_id" element={<ArticlePage />} />
+      </Routes>
     </div>
   );
 }
