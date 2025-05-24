@@ -12,7 +12,19 @@ export const getArticles = () => {
 export const getArticleById = (article_id) => {
   return ncNewsApi.get(`/articles/${article_id}`).then((res) => {
     
+      console.log("📦 Article API response:", res.data);
 
     return res.data.article;
+  });
+};
+
+export const getCommentsByArticleId =(article_id)=>{
+    return ncNewsApi.get(`/articles/${article_id}/comments`).then((res)=>{return res.data.comments })
+}
+
+
+export const patchVoteByArticleId=(article_id, change)=>{
+return ncNewsApi.patch(`/articles/${article_id}`, {
+    inc_votes: change,
   });
 };
