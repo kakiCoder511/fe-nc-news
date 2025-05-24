@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <Header user={user} />
+      <Header user={user} linkto="/"/>
       <TopicsBar />
 
       <Routes>

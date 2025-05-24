@@ -1,45 +1,76 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getArticleById } from "../../api";
+import { getArticleById, getCommentsByArticleId } from "../../api";
+import CommentsList from "./CommentsList";
 import dayjs from "dayjs";
+import ArticleVotes from "./ArticleVotes";
 
 export default function ArticlePage() {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [isLoadingArticle, setIsLoadingArticle] = useState(true);
+  const [isLoadingComments, setIsLoadingComments] = useState(true);
+  const [isArticleError, setIsArticleError] = useState(false);
+  const [isCommentsError, setIsCommentsError] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoadingArticle(true);
     getArticleById(article_id)
       .then((data) => {
         setArticle(data);
       })
       .catch((err) => {
-        setIsError(true);
+        setIsArticleError(true);
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsLoadingArticle(false);
       });
   }, [article_id]);
-  
-  if (isLoading) {
-    return <p>⏳Article is Loading ... 🥱</p>;
+
+  useEffect(() => {
+    setIsLoadingComments(true);
+    getCommentsByArticleId(article_id)
+      .then((data) => {
+        setComments(data);
+      })
+      .catch((err) => {
+        setIsCommentsError(true);
+      })
+      .finally(() => {
+        setIsLoadingComments(false);
+      });
+  }, [article_id]);
+
+
+  if (isLoadingArticle || isLoadingComments) {
+    return <p>⏳ Loading ... 🥱</p>;
   }
-  if (isError) {
+  if (isArticleError || isCommentsError) {
     return <p>OMG 🤯 Something went wrong</p>;
   }
-console.log(article);
+  // 404: article is null
+  if (!article) return <p> Article not found </p>;
+
 
   return (
     <section>
       <h2>{article.title}</h2>
       <p>{article.topic}</p>
       <p>{article.body}</p>
-      <img src={article.article_img_url} alt="image of the article" width={30} height={30} />
-      <p>
-        | votes{ article.votes} | 🗓️ {dayjs(article.created_at).format(" DD MMM YYYY ddd")} | 🖋️By {article.author} 
-      </p>
+      <img
+        src={article.article_img_url}
+        alt="image of the article"
+        width={540}
+        height={310}
+      />
+      <div className="articleInfo">
+        <ArticleVotes article_id={article.article_id} initialVotes={article.votes}/>  | 🗓️{" "}
+        {dayjs(article.created_at).format(" DD MMM YYYY ddd")} | 🖋️By{" "}
+        {article.author}
+      </div>
+      <p>Comments</p>
+      <CommentsList comments={comments} />
     </section>
   );
 }

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../../api";
 import ArticleCard from "./ArticleCard";
 
-
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
   const [isError, setIsError] = useState(false);
@@ -33,9 +32,9 @@ export default function ArticleList() {
     <section>
       <h2>All Articles</h2>
       <ul>
-        {articles.length > 0 ? (
+        { articles.length > 0 ? (
+          
           articles.map((article) => {
-            
             return <ArticleCard article={article} key={article.article_id} />;
           })
         ) : (
