@@ -28,3 +28,12 @@ return ncNewsApi.patch(`/articles/${article_id}`, {
     inc_votes: change,
   });
 };
+
+ 
+
+export const postCommentByArticleID = (article_id, username, body) => {
+  return ncNewsApi.post(`/articles/${article_id}/comments`, {
+    username,
+    body
+  });
+};
