@@ -6,7 +6,7 @@ import ArticlePage from "./components/ArticlePage.jsx";
 import "./App.css";
 
 function App() {
-  const user = { username: "kakiCoder511", avatar_url: "/avatar.jpg" };
+  const user = { username: "tickle122", avatar_url: "/avatar.jpg" };
 
   return (
     <div>
@@ -15,7 +15,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<ArticlesList />} />
-        <Route path="articles/:article_id" element={<ArticlePage />} />
+        <Route path="articles/:article_id" element={<ArticlePage user={user}/>} />
       </Routes>
     </div>
   );

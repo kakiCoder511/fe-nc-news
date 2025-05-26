@@ -5,7 +5,7 @@ import CommentsList from "./CommentsList";
 import dayjs from "dayjs";
 import ArticleVotes from "./ArticleVotes";
 
-export default function ArticlePage() {
+export default function ArticlePage({user}) {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
@@ -68,9 +68,14 @@ export default function ArticlePage() {
         <ArticleVotes article_id={article.article_id} initialVotes={article.votes}/>  | 🗓️{" "}
         {dayjs(article.created_at).format(" DD MMM YYYY ddd")} | 🖋️By{" "}
         {article.author}
+
       </div>
       <p>Comments</p>
-      <CommentsList comments={comments} />
+      <CommentsList 
+      comments={comments} 
+      user={user} 
+      article_id={article_id}
+      setComments={setComments}/>
     </section>
   );
 }
