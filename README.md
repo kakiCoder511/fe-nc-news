@@ -14,8 +14,7 @@ This project connects to a RESTful backend API and implements core user features
 - React Router
 - Axios
 - Day.js
-- HTML/CSS (vanilla)
-- Deployed via Netlify
+- HTML/CSS 
 
 ## 🔧 Core Features
 
