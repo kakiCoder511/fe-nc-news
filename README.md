@@ -1,14 +1,57 @@
-# fe-nc-news
+# NC News Frontend (Kaki Ongoing Project)
 
-# React + Vite
+A React-based news site frontend, developed as part of my full-stack bootcamp project.  
+This project connects to a RESTful backend API and implements core user features such as:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Fetching articles & comments
+- Sorting by topic
+- Upvoting articles
+- Posting & deleting comments
 
-Currently, two official plugins are available:
+## 🛠 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React (with hooks)
+- React Router
+- Axios
+- Day.js
+- HTML/CSS (vanilla)
+- Deployed via Netlify
 
-## Expanding the ESLint configuration
+## 🔧 Core Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📰 **Article Feed**: view all articles by topic
+- 📖 **Single Article Page**: article content, vote counter, and comments
+- 💬 **Comments**: see all comments, post your own, and delete if author
+- ⬆️⬇️ **Vote Functionality**: optimistic UI with rollback and disabled state
+
+ 
+ ## 🔧 In Progress
+
+- Add user authentication
+- Improve comment form UX
+- Add sorting/filtering dropdowns
+- Add loading skeletons
+
+Stay tuned — I’ll continue refining this app!
+
+## 🧠 What I Learned
+
+This project helped me understand:
+
+- React's data-fetching lifecycle with `useEffect`
+- How to manage optimistic UI (e.g. upvoting before server confirms)
+- Designing a reusable vote component with rollback logic
+- Error handling and user feedback (disabled state, error messages)
+
+## Getting Started
+```bash
+git clone https://github.com/kakiCoder511/fe-nc-news.git
+cd fe-nc-news
+npm install
+npm start
+
+
+
+
+
+
