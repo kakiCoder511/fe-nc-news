@@ -22,7 +22,7 @@ export default function ArticleList() {
   }, []);
 
   if (isError) {
-    return <p>Something went wrong</p>;
+    return <p>Waking up the server... ⏳</p>;
   }
   if (isLoading) {
     return <p>⏳Articles is Loading ... 🥱</p>;

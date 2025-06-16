@@ -37,3 +37,16 @@ export const postCommentByArticleID = (article_id, username, body) => {
     body
   });
 };
+
+export const deleteCommentById =(comment_id)=>{
+  return ncNewsApi.delete(`/comments/${comment_id}`)
+}
+
+export const getTopics = () => {
+  return ncNewsApi.get("/topics").then((res) => res.data.topics);
+};
+
+export const getArticlesByTopic = (slug) => {
+  return ncNewsApi.get(`/articles?topic=${slug}`).then((res) => res.data.articles);
+};
+
