@@ -5,6 +5,7 @@ import TopicsBar from "./components/TopicsBar.jsx";
 import ArticlesList from "./components/ArticlesList.jsx";
 import ArticlePage from "./components/ArticlePage.jsx";
 import "./App.css";
+import SortBy from "./components/SortBy.jsx"
 
 function App() {
   const user = { username: "tickle122", avatar_url: "/avatar.jpg" };
@@ -12,6 +13,7 @@ function App() {
   return (
     <div>
       <Header user={user} linkto="/" />
+      <SortBy />
       <TopicsBar />
       <Routes>
         <Route path="/topics/:slug" element={<TopicArticlesPage />} />

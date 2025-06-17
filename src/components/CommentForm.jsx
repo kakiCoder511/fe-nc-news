@@ -1,23 +1,27 @@
 import { postCommentByArticleID } from "../../api";
 import { useState } from "react";
 
-export default function CommentForm({ article_id, user,setComments, onSuccess }) {
+export default function CommentForm({
+  article_id,
+  user,
+  setComments,
+  onSuccess,
+}) {
   const [body, setBody] = useState("");
 
-const handleFormSumbit =(e)=>{
-e.preventDefault()
+  const handleFormSumbit = (e) => {
+    e.preventDefault();
 
-postCommentByArticleID(article_id, user.username, body)
-.then((res)=>{
-
-  setComments((prev)=>[res.data.comment,...prev])
-  setBody("")
-  onSuccess()
-})
-.catch((err)=>{
-  alert("😳Failed to post comment")
-})
-}
+    postCommentByArticleID(article_id, user.username, body)
+      .then((res) => {
+        setComments((prev) => [res.data.comment, ...prev]);
+        setBody("");
+        onSuccess();
+      })
+      .catch((err) => {
+        alert("😳 Failed to post comment");
+      });
+  };
 
   return (
     <div>
@@ -29,7 +33,7 @@ postCommentByArticleID(article_id, user.username, body)
           id="comment"
           value={body}
           onChange={(e) => setBody(e.target.value)}
-        /> 
+        />
         <br />
         <br />
         <button type="submit">Submit</button>
