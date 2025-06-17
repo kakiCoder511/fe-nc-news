@@ -18,7 +18,7 @@ export default function CommentsList({
     setComments((prev) =>
       prev.filter((comment) => comment.comment_id != commentId)
     );
-  };
+  }; 
 
   return (
     <ul>

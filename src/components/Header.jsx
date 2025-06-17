@@ -1,5 +1,5 @@
 import UserCard from "./UserCard";
-import { Link } from "react-router-dom"; // 如果係 SPA
+import { Link } from "react-router-dom"; 
 
 export default function Header({ user, linkto }) {
   return (

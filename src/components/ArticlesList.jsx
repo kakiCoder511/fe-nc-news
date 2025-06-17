@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../../api";
 import ArticleCard from "./ArticleCard";
+import { useSearchParams } from "react-router-dom";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchParams]=useSearchParams();
 
   useEffect(() => {
+    const sort_by = searchParams.get("sort_by") || "created_at";
+    const order = searchParams.get("order") || "desc";
+
     setIsLoading(true);
-    getArticles()
+    setIsError(false);
+
+    getArticles({sort_by,order})
       .then((articles) => {
         setArticles(articles);
       })
@@ -19,10 +26,10 @@ export default function ArticleList() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [searchParams]);
 
   if (isError) {
-    return <p>Waking up the server... ⏳</p>;
+    return <p>Waking up the server.../Please try again Later ⏳</p>;
   }
   if (isLoading) {
     return <p>⏳Articles is Loading ... 🥱</p>;
