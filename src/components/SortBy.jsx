@@ -12,25 +12,27 @@ const handleSortChange =(e)=>{
     searchParams.set("sort_by",e.target.value)
     setSearchParams(searchParams)
 }
-const toggleOrder = () => {
-  const newOrder = order === "asc" ? "desc" : "asc";
-  const newParams = new URLSearchParams(searchParams); 
-  newParams.set("order", newOrder);
+ const handleOrderChange = (e) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("order", e.target.value);
+    setSearchParams(newParams);
+  };
 
-  setSearchParams(newParams);
-};
+  return (
+    <section style={{ marginBottom: "1rem" }}>
+      <label htmlFor="sort-select">Sort By: </label>
+      <select id="sort-select" value={sort_by} onChange={handleSortChange}>
+        <option value="created_at">Date</option>
+        <option value="votes">Votes</option>
+        <option value="comment_count">Comment Count</option>
+      </select>
 
-return(
-    <section>
-        <label htmlFor="sort-select">Sort By:</label>
-        <select id="sort-se;ect" value={sort_by} onChange={handleSortChange}>
-            <option value="created_at">Date</option>
-            <option value="votes">Votes</option>
-            <option value ="comment_count"> Comment Count</option>
-        </select>
-        <button onClick={toggleOrder}>
-            Order :{ order ==="asc"?" Ascending":" Descending"}
-        </button>
+      <label htmlFor="order-select" style={{ marginLeft: "1rem" }}> Order: </label>
+      <select id="order-select" value= {order} onChange={handleOrderChange}>
+        <option value="desc">Descending</option>
+        <option value="asc">Ascending</option>
+      </select>
     </section>
-)
+  );
+   
 }

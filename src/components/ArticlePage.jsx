@@ -63,8 +63,7 @@ export default function ArticlePage({ user }) {
       <img
         src={article.article_img_url}
         alt="image of the article"
-        width={540}
-        height={310}
+          className="article-image"
       />
       <div className="articleInfo">
         <ArticleVotes

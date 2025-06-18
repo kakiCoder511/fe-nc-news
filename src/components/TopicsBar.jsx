@@ -27,14 +27,14 @@ export default function TopicsBar({ article }) {
 
   return (
     <nav>
-      {topics.map((topic) => (
-        <button
-          key={topic.slug}
-          onClick={() => navigate(`/topics/${topic.slug}`)}
-        >
-          {topic.slug}
-        </button>
-      ))}
+      <div className="topics-bar">
+        <strong>TOPICS:</strong>
+        <div className="topics-wrapper">
+          {topics.map((topic) => (
+            <button key={topic.slug}>{topic.slug}</button>
+          ))}
+        </div>
+      </div>
     </nav>
   );
 }

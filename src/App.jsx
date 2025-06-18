@@ -12,10 +12,14 @@ function App() {
   const user = { username: "tickle122", avatar_url: "/avatar.jpg" };
 
   return (
-    <div>
+     <div>
       <Header user={user} linkto="/" />
-      <SortBy />
-      <TopicsBar />
+      
+      <div className="controls">
+        <TopicsBar />
+        <SortBy />
+      </div>
+
       <Routes>
         <Route path="/topics/:slug" element={<TopicArticlesPage />} />
         <Route path="/" element={<ArticlesList />} />
@@ -23,7 +27,7 @@ function App() {
           path="articles/:article_id"
           element={<ArticlePage user={user} />}
         />
-        <Route path="*" element={<NotFound/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
