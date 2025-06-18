@@ -16,19 +16,20 @@ This project connects to a RESTful backend API and implements core user features
 - Day.js
 - HTML/CSS 
 
-## 🔧 Core Features
+## 🔧 MVP / Core Features
 
-- 📰 **Article Feed**: view all articles by topic
+- 📰 **Article Feed**: view all articles 
 - 📖 **Single Article Page**: article content, vote counter, and comments
 - 💬 **Comments**: see all comments, post your own, and delete if author
-- ⬆️⬇️ **Vote Functionality**: optimistic UI with rollback and disabled state
+- ⬆️⬇️ **Vote Functionality**: optimistic UI with rollback and disabled 
+- 🕹️**Sort Functionality**: sort articles by date, votes,comment count, or filter bytopic
+- **❌Error Handleing**: see an appropriate, including error 404 pages for handleing missing missing articles, topics, or invalid paths, and failed comment submissions (e.g. when the comment field is empty).
 
  
  ## 🔧 In Progress
 
 - Add user authentication
 - Improve comment form UX
-- Add sorting/filtering dropdowns
 - Add loading skeletons
 
 Stay tuned — I’ll continue refining this app!

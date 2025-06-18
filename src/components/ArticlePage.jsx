@@ -5,7 +5,7 @@ import CommentsList from "./CommentsList";
 import dayjs from "dayjs";
 import ArticleVotes from "./ArticleVotes";
 
-export default function ArticlePage({user}) {
+export default function ArticlePage({ user }) {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
@@ -16,6 +16,8 @@ export default function ArticlePage({user}) {
 
   useEffect(() => {
     setIsLoadingArticle(true);
+    setIsArticleError(false);
+
     getArticleById(article_id)
       .then((data) => {
         setArticle(data);
@@ -30,6 +32,8 @@ export default function ArticlePage({user}) {
 
   useEffect(() => {
     setIsLoadingComments(true);
+    setIsCommentsError(false);
+
     getCommentsByArticleId(article_id)
       .then((data) => {
         setComments(data);
@@ -42,16 +46,14 @@ export default function ArticlePage({user}) {
       });
   }, [article_id]);
 
-
   if (isLoadingArticle || isLoadingComments) {
-    return <p>⏳ Loading ... 🥱</p>;
+    return <p>⏳ Loading Articles... 🥱</p>;
   }
   if (isArticleError || isCommentsError) {
-    return <p>OMG 🤯 Something went wrong</p>;
+    return <p>❌Article not found or Server error();</p>;
   }
   // 404: article is null
-  if (!article) return <p> Article not found </p>;
-
+  if (!article) return <p> Article not found 👀</p>;
 
   return (
     <section>
@@ -65,17 +67,20 @@ export default function ArticlePage({user}) {
         height={310}
       />
       <div className="articleInfo">
-        <ArticleVotes article_id={article.article_id} initialVotes={article.votes}/>  | 🗓️{" "}
-        {dayjs(article.created_at).format(" DD MMM YYYY ddd")} | 🖋️By{" "}
+        <ArticleVotes
+          article_id={article.article_id}
+          initialVotes={article.votes}
+        />{" "}
+        | 🗓️ {dayjs(article.created_at).format(" DD MMM YYYY ddd")} | 🖋️By{" "}
         {article.author}
-
       </div>
       <p>Comments</p>
-      <CommentsList 
-      comments={comments} 
-      user={user} 
-      article_id={article_id}
-      setComments={setComments}/>
+      <CommentsList
+        comments={comments}
+        user={user}
+        article_id={article_id}
+        setComments={setComments}
+      />
     </section>
   );
 }

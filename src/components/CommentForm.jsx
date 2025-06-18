@@ -8,9 +8,16 @@ export default function CommentForm({
   onSuccess,
 }) {
   const [body, setBody] = useState("");
+  const [Error,setError]=useState(null)
+  const[isSubmitting, setIsSubmitting]=useState(false)
 
   const handleFormSumbit = (e) => {
     e.preventDefault();
+
+    if(!body.trim()){
+      setError("Comment cannot be empty🐝")
+      return
+    }
 
     postCommentByArticleID(article_id, user.username, body)
       .then((res) => {

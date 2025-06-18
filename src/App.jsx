@@ -6,6 +6,7 @@ import ArticlesList from "./components/ArticlesList.jsx";
 import ArticlePage from "./components/ArticlePage.jsx";
 import "./App.css";
 import SortBy from "./components/SortBy.jsx"
+import NotFound from "./components/Notfound.jsx";
 
 function App() {
   const user = { username: "tickle122", avatar_url: "/avatar.jpg" };
@@ -22,6 +23,7 @@ function App() {
           path="articles/:article_id"
           element={<ArticlePage user={user} />}
         />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>
   );
