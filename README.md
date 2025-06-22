@@ -1,4 +1,6 @@
 # NC News Frontend (Kaki Ongoing Project)
+[![View on Netlify](https://img.shields.io/badge/Live%20Site-Netlify-brightgreen)](https://nc-news-kaki.netlify.app/)
+
 
 A React based news site frontend, developed as part of my full-stack bootcamp project.  
 This project connects to a RESTful backend API and implements core user features such as:
