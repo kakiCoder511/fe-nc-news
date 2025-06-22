@@ -1,6 +1,6 @@
 # NC News Frontend (Kaki Ongoing Project)
 
-A React-based news site frontend, developed as part of my full-stack bootcamp project.  
+A React based news site frontend, developed as part of my full-stack bootcamp project.  
 This project connects to a RESTful backend API and implements core user features such as:
 
 - Fetching articles & comments
@@ -32,16 +32,6 @@ This project connects to a RESTful backend API and implements core user features
 - Improve comment form UX
 - Add loading skeletons
 
-Stay tuned — I’ll continue refining this app!
-
-## 🧠 What I Learned
-
-This project helped me understand:
-
-- React's data-fetching lifecycle with `useEffect`
-- How to manage optimistic UI (e.g. upvoting before server confirms)
-- Designing a reusable vote component with rollback logic
-- Error handling and user feedback (disabled state, error messages)
 
 ## Getting Started
 ```bash
