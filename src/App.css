@@ -14,7 +14,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: transparent;
+  background-color:rgb(123, 118, 91) ;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
