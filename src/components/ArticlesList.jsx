@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { getArticles } from "../../api";
+import "./ArticlesList.css";
 
 export default function ArticlesList() {
   const { slug } = useParams();
@@ -36,17 +37,24 @@ export default function ArticlesList() {
   return (
     <section>
       {slug && <h2>Topic: {slug}</h2>}
-      <ul>
+      <ul className="articles-list">
         {articles.map((article) => (
           <li
             key={article.article_id}
+            className="article-item"
             onClick={() => navigate(`/articles/${article.article_id}`)}
-            style={{ marginBottom: "1rem", cursor: "pointer" }}
           >
-            <h3>{article.title}</h3>
-            <p>
-              By {article.author} | Votes: {article.votes} | Comments: {article.comment_count}
-            </p>
+            <img
+              src={article.article_img_url}
+              alt="Article Thumbnail"
+            />
+            <div className="article-content">
+              <h3>{article.title}</h3>
+              <p>
+                By {article.author} | Votes: {article.votes} | Comments:{" "}
+                {article.comment_count}
+              </p>
+            </div>
           </li>
         ))}
       </ul>

@@ -1,0 +1,33 @@
+/* ArticlesList.css */
+
+.articles-list {
+  list-style: none;
+  padding: 0;
+}
+
+.article-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.article-item:hover {
+  background: #dcdcd8;
+}
+
+.article-item img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.article-content {
+  flex: 1;
+}
