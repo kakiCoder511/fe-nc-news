@@ -1,52 +1,54 @@
 import { useEffect, useState } from "react";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { getArticles } from "../../api";
-import ArticleCard from "./ArticleCard";
-import { useSearchParams } from "react-router-dom";
 
-export default function ArticleList() {
+export default function ArticlesList() {
+  const { slug } = useParams();
+  const [searchParams] = useSearchParams();
   const [articles, setArticles] = useState([]);
-  const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchParams]=useSearchParams();
+  const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
+
+  const sortBy = searchParams.get("sort_by") || "created_at";
+  const order = searchParams.get("order") || "desc";
 
   useEffect(() => {
-    const sort_by = searchParams.get("sort_by") || "created_at";
-    const order = searchParams.get("order") || "desc";
-
     setIsLoading(true);
     setIsError(false);
 
-    getArticles({sort_by,order})
-      .then((articles) => {
-        setArticles(articles);
+    getArticles({ sort_by: sortBy, order: order, topic: slug })
+      .then((data) => {
+        setArticles(data);
       })
-      .catch((err) => {
+      .catch(() => {
         setIsError(true);
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [searchParams]);
+  }, [slug, sortBy, order]);
 
-  if (isError) {
-    return <p>Waking up the server.../Please try again Later ⏳</p>;
-  }
-  if (isLoading) {
-    return <p>⏳Articles is Loading ... 🥱</p>;
-  }
+  if (isLoading) return <p>⏳ Loading Articles... 🥱</p>;
+  if (isError) return <p>❌ Failed to load articles.</p>;
+  if (articles.length === 0) return <p>📭 No articles found.</p>;
 
   return (
     <section>
-      <h2>All Articles</h2>
+      {slug && <h2>Topic: {slug}</h2>}
       <ul>
-        { articles.length > 0 ? (
-          
-          articles.map((article) => {
-            return <ArticleCard article={article} key={article.article_id} />;
-          })
-        ) : (
-          <h3>No Item under Available👀</h3>
-        )}
+        {articles.map((article) => (
+          <li
+            key={article.article_id}
+            onClick={() => navigate(`/articles/${article.article_id}`)}
+            style={{ marginBottom: "1rem", cursor: "pointer" }}
+          >
+            <h3>{article.title}</h3>
+            <p>
+              By {article.author} | Votes: {article.votes} | Comments: {article.comment_count}
+            </p>
+          </li>
+        ))}
       </ul>
     </section>
   );

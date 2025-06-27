@@ -46,7 +46,3 @@ export const getTopics = () => {
   return ncNewsApi.get("/topics").then((res) => res.data.topics);
 };
 
-export const getArticlesByTopic = (slug) => {
-  return ncNewsApi.get(`/articles?topic=${slug}`).then((res) => res.data.articles);
-};
-
